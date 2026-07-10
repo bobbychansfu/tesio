@@ -1,0 +1,16 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - ${_IMAGE_URI}
+      - .
+
+images:
+  - ${_IMAGE_URI}
+
+substitutions:
+  _IMAGE_URI: ${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_SERVICE}:${COMMIT_SHA}
+  _LOCATION: us-central1
+  _REPOSITORY: cloud-run-source-deploy
+  _SERVICE: tesio
